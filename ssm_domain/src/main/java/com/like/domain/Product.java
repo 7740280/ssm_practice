@@ -1,5 +1,7 @@
 package com.like.domain;
 
+import com.like.utils.DateUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -85,6 +87,9 @@ public class Product implements Serializable
 
     public String getDepartureTimeStr()
     {
+        if (departureTime != null) {
+            departureTimeStr = DateUtils.date2String(departureTime, "yyyy-MM-dd HH:mm:ss");
+        }
         return departureTimeStr;
     }
 
@@ -125,6 +130,13 @@ public class Product implements Serializable
 
     public String getProductStatusStr()
     {
+        if (productStatus != null) {
+            if (productStatus == 1)
+                productStatusStr = "开启";
+            if (productStatus == 0)
+                productStatusStr = "关闭";
+        }
+
         return productStatusStr;
     }
 
