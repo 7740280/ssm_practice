@@ -26,4 +26,11 @@ public class ProductController
         vm.setViewName("productList");
         return vm;
     }
+
+    @RequestMapping("/save")
+    public String save(Product product) throws Exception
+    {
+        productService.save(product);
+        return "redirect:findAll";
+    }
 }

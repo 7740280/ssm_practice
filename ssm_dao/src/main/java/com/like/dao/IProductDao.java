@@ -1,6 +1,7 @@
 package com.like.dao;
 
 import com.like.domain.Product;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +12,7 @@ public interface IProductDao
 {
     @Select("select * from product")
     List<Product> findAll() throws Exception;
+
+    @Insert("insert into product(productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
+    void save(Product product);
 }
