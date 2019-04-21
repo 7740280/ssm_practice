@@ -1,5 +1,7 @@
 package com.like.domain;
 
+import com.like.utils.DateUtils;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Orders
     private Date orderTime;
     private String orderTimeStr;
     private Integer orderStatus;
+    private String orderStatusStr;
     private Integer peopleCount;
     private Product product;    //产品1对1
     private List<Traveller> travellers; //乘客
@@ -69,12 +72,33 @@ public class Orders
 
     public String getOrderTimeStr()
     {
+        if (null != orderTime) {
+            orderTimeStr = DateUtils.date2String(orderTime, "yyyy-MM-dd HH:mm:ss");
+        }
+
         return orderTimeStr;
     }
 
     public void setOrderTimeStr(String orderTimeStr)
     {
         this.orderTimeStr = orderTimeStr;
+    }
+
+    public String getOrderStatusStr()
+    {
+        if (null != orderStatus) {
+            if (orderStatus == 0)
+                orderStatusStr = "未支付";
+            if (orderStatus == 1)
+                orderStatusStr = "已支付";
+        }
+
+        return orderStatusStr;
+    }
+
+    public void setOrderStatusStr(String orderStatusStr)
+    {
+        this.orderStatusStr = orderStatusStr;
     }
 
     public Integer getOrderStatus()
@@ -149,6 +173,15 @@ public class Orders
 
     public String getPayTypeStr()
     {
+        if (null != payType) {
+            if (payType == 0)
+                payTypeStr = "支付宝";
+            if (payType == 1)
+                payTypeStr = "微信";
+            if (payType == 2)
+                payTypeStr = "其他";
+        }
+
         return payTypeStr;
     }
 

@@ -1,24 +1,35 @@
 package com.like.controller;
 
 
+import com.like.domain.Orders;
+import com.like.service.IOrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
-@RequestMapping("orders")
+@RequestMapping("/orders")
 public class OrdersController
 {
 
+    @Autowired
+    private IOrdersService iOrdersService;
 
-
-    @RequestMapping("findAll")
-    public String findAll()
+    @RequestMapping("/findAll")
+    public ModelAndView findAll()
     {
-        return "hello";
+        ModelAndView mv = new ModelAndView();
+        List<Orders> orders = iOrdersService.findAll();
+        mv.addObject("orders", orders);
+        mv.setViewName("ordersList");
+
+        return mv;
     }
 
-    @RequestMapping("findById")
+    @RequestMapping("/findById")
     public void findById()
     {
 

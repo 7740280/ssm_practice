@@ -19,12 +19,12 @@ public class OrdersServiceImpl implements IOrdersService
     @Override
     public List<Orders> findAll()
     {
-        return null;
+        return iOrdersDao.findAll();
     }
 
     @Override
     public Orders findById(Integer id)
     {
-        return null;
+        return iOrdersDao.findById(id);
     }
 }
