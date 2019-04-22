@@ -49,8 +49,13 @@ public class OrdersController
     }
 
     @RequestMapping("/findById")
-    public void findById()
+    public ModelAndView findById(@RequestParam(name = "id",required = true)int id)
     {
+        Orders orders = iOrdersService.findById(id);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("orders",orders);
+        mv.setViewName("orders-show");
 
+        return mv;
     }
 }
