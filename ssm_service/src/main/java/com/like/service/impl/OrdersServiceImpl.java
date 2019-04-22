@@ -1,5 +1,6 @@
 package com.like.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.like.dao.IOrdersDao;
 import com.like.domain.Orders;
 import com.like.service.IOrdersService;
@@ -17,8 +18,10 @@ public class OrdersServiceImpl implements IOrdersService
     private IOrdersDao iOrdersDao;
 
     @Override
-    public List<Orders> findAll()
+    public List<Orders> findAll(Integer page, Integer size)
     {
+        //pageNum是页码值,pageSize是每页显示的条数
+        PageHelper.startPage(page, size);
         return iOrdersDao.findAll();
     }
 
