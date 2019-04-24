@@ -9,4 +9,6 @@ public interface IUserService
     List<UserInfo> findAll();
 
     void save(UserInfo userInfo);
+
+    UserInfo findById(Integer id);
 }
