@@ -110,7 +110,7 @@
                             <div class="form-group form-inline">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="新建"
-                                            onclick="location.href='${pageContext.request.contextPath}/pages/user-add.jsp'">
+                                            onclick="location.href='${pageContext.request.contextPath}/pages/userAdd.jsp'">
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
 

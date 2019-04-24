@@ -21,11 +21,18 @@ public class UserController
     public ModelAndView findAll()
     {
         List<UserInfo> infoList = userService.findAll();
-        System.out.println(infoList);
         ModelAndView mv = new ModelAndView();
         mv.addObject("userList", infoList);
         mv.setViewName("userList");
 
         return mv;
+    }
+
+    @RequestMapping("/save")
+    public String save(UserInfo userInfo)
+    {
+        userService.save(userInfo);
+
+        return "forward:findAll";
     }
 }
