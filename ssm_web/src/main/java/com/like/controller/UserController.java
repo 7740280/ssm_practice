@@ -1,6 +1,7 @@
 package com.like.controller;
 
 
+import com.like.domain.Role;
 import com.like.domain.UserInfo;
 import com.like.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,32 @@ public class UserController
         mv.setViewName("userShow");
 
         return mv;
+    }
+
+    @RequestMapping("/findUserByIdAndAllRole")
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) Integer userId)
+    {
+        //获取当前用户
+        UserInfo userInfo = userService.findById(userId);
+        //获取没有的角色
+        List<Role> roleList = userService.findOtherRoles(userId);
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("user", userInfo);
+        mv.addObject("roleList", roleList);
+        mv.setViewName("userRoleAdd");
+
+        return mv;
+    }
+
+    @RequestMapping("addRoleToUser")
+    public String addRoleToUser(
+            @RequestParam(name = "ids", required = true) Integer[] ids,
+            @RequestParam(name = "userId", required = true) int userId
+    )
+    {
+        userService.addRoleToUser(userId, ids);
+
+        return "redirect:findAll";
     }
 }

@@ -1,6 +1,7 @@
 package com.like.dao;
 
 
+import com.like.domain.Role;
 import com.like.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -48,4 +49,12 @@ public interface IUserDao
             @Result(property = "roles", column = "id", javaType = List.class, many = @Many(select = "com.like.dao.IRoleDao.findRoleByUserId")),
     })
     UserInfo findById(Integer id);
+
+
+    @Select("select * from role where id not in (select roleId from user_role where userId = #{userId})")
+    List<Role> findOtherRoles(Integer userId);
+
+
+    @Insert("insert into user_role (userId,roleId) values (#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") int userId, @Param("roleId") Integer roleId);
 }
