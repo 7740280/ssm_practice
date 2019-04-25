@@ -1,10 +1,7 @@
 package com.like.dao;
 
 import com.like.domain.Role;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +19,10 @@ public interface IRoleDao
             @Result(property = "permissions", column = "id", javaType = List.class, many = @Many(select = "com.like.dao.IPermission.findPermissionByRoleId"))
     })
     List<Role> findRoleByUserId(Integer id);
+
+    @Select("select * from role")
+    List<Role> findAll();
+
+    @Insert("insert into role (roleName,roleDesc) values ( #{roleName}, #{roleDesc})")
+    void save(Role role);
 }
