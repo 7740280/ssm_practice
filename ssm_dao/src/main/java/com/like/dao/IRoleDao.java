@@ -16,7 +16,7 @@ public interface IRoleDao
             @Result(property = "roleDesc", column = "roleDesc"),
             @Result(property = "roleDesc", column = "roleDesc"),
 
-            @Result(property = "permissions", column = "id", javaType = List.class, many = @Many(select = "com.like.dao.IPermission.findPermissionByRoleId"))
+            @Result(property = "permissions", column = "id", javaType = List.class, many = @Many(select = "com.like.dao.IPermissionDao.findPermissionByRoleId"))
     })
     List<Role> findRoleByUserId(Integer id);
 
