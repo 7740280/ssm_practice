@@ -5,6 +5,7 @@ import com.like.domain.Role;
 import com.like.domain.UserInfo;
 import com.like.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +52,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService
     }
 
     @Override
+    @Secured("ROLE_ADMIN")
     public List<UserInfo> findAll()
     {
         return userDao.findAll();

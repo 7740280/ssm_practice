@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<div>权限不足</div>
+    <div>权限不足</div>
 </body>
 </html>
