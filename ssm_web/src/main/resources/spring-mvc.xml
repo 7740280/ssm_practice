@@ -26,4 +26,7 @@
 
     <!--开启SpringMVC注解支持-->
     <mvc:annotation-driven/>
+
+    <!--开启AOP注解支持-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>
